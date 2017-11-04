@@ -1,0 +1,206 @@
+/*
+
+==================================================
+CSS GRID
+==================================================
+https://www.w3.org/TR/css3-grid-layout/
+https://www.w3.org/TR/2017/CR-css-grid-1-20170509/
+
+
+TERMINOLOGY*
+------------------------------
+
+GRID:
+grid lines
+grid tracks (space between two adjacent lines)
+	grid rows (vertical track)
+	grid columns (horizontal track)
+grid cells (intersection of a row and column)
+grid area (one or more adjacent cells)
+
+AXIS:
+block start									// beginning of a column (or row on vertical writing modes)
+block end
+inline start								// beginning of a row (or column on vertical writing modes)
+inline end
+
+LANGUAGE DIRECTION AND WRITING MODES:
+direction:
+	rtl										// changes the default direction of text and elements
+writing-mode:
+	horizontal-tb							// default, left to right, top to bottom
+	vertical-rl								// vertical text, rotated 90 degrees clockwise, top to bottom, right to left
+	vertical-lr								// same but left to right
+	sideways-rl								// seems to be the same as 'vertical-rl'???
+	sideways-lr								// vertical text, rotated 90 degrees anticlockwise, bottom to top, left to right
+
+
+UNITS AND KEYWORDS*
+------------------------------
+<track-size>
+	<length>
+	percentage
+	fr										// represents 'fractions' of the remaining available space;
+	<intrinsic-size>
+	minmax()
+<intrinsic-size>
+	max-content								// biggest space that the content can take
+	min-content								// smallest space that the content can take (without breaking up any words)
+	fit-content(<length>|percentage)		// equivalent to minmax(min-content, max-content)???
+	auto									// equivalent to fit-content???
+	stretch-fit								// ???
+<repetitions>
+	integer
+	auto-fill								// adds as many rows or columns as necessary to hold the content without having the container overflow
+	auto-fit								// same as auto-fill, except that after placing the grid items any empty repeated tracks are collapsed
+<fixed-size>
+	<length>
+	percentage
+	minmax(<length>|percentage, <track-size>)
+	minmax(<track-size-minus-fr>, <length>|percentage)
+minmax(<track-size-minus-fr>, <track-size>)	// defines a minimum and maximum size for a grid item
+repeat(<repetitions>, line-names? <track-size-minus-minmax>... line-names?)	// defines multiple tracks with set lengths, multiple values are used as alternating sizes (multiplied by 'repetitions')
+
+
+GRID CONTAINERS*
+------------------------------
+display: grid;
+display: inline-grid;
+
+
+DEFINING ROWS AND COLUMNS*
+------------------------------
+grid-template-columns						// defines the number and size of grid columns to be created
+	none
+	line-names? <track-size>|repeat()... line-names?	// you can only use 'auto-fill' and 'auto-fit' in a single repeat() function, and only if the rest of the values are <fixed-size>
+grid-template-rows							// defines the number and size of grid rows to be created
+grid-template-areas							// defines and names grid areas on the container, you can use it to make responsive grids without having to update each grid item individually
+	"header		header		header"
+	"sidebar	content-1	content-1"
+	"sidebar	content-2	content-3"
+	".			footer		footer";		// you can use a dot '.' to mark grid cells that should remain empty
+
+
+DEFINING AUTO-FLOW RULES*
+------------------------------
+grid-auto-rows								// defines the rules for automatically generated rows (when grid items are added outside the defined grid)
+	<track-size>...							// you can pass multiple values to define alternating sizes
+grid-auto-columns							// same but for columns
+grid-auto-flow:								// defines whether auto-placed items should be spread across rows or columns, defaults to rows
+	dense									// makes auto-flow place items on empty spaces left by other items that were specifically placed on a grid area
+	row dense?
+	column dense?
+
+
+SHORTHANDS*
+------------------------------
+grid-template
+	none
+	<grid-template-rows> / <grid-template-columns>													// Sets grid-template-areas to 'none'
+	line-names? "area-name" <track-size>? line-names? / [line-names? <track-size> line-names?]?		// Sets undefined row and column sizes as 'auto'
+grid										// resets ALL grid properties (including gaps, which are always set to '0')
+	<grid-template>
+	<grid-template-rows> / auto-flow dense? <grid-auto-columns>?									// Sets grid-auto-flow to 'column' (plus dense if also added)
+	auto-flow dense? <grid-auto-rows>? / <grid-template-columns>									// Sets grid-auto-flow to 'row' (plus dense if also added)
+
+EXAMPLES:
+grid-template: none;
+grid-template: 50px 100px / 200px 1fr;
+grid-template:
+	"header  header  header"
+	"sidebar content content";
+grid-template:
+	[row1 row-first]   "header  header       header"     200px [row2]
+	[row2]             "sidebar content      content"    200px [row3 row-last]
+	/                  [col1 col-first] 1fr  [col2] 1fr  [col3 col-last];
+grid: 50px 100px / auto-flow;
+grid: 50px 100px / auto-flow dense 5rem;
+grid: auto-flow / 200px 1fr;
+
+
+PLACING GRID ITEMS*
+------------------------------
+grid-row-start								// selects the grid line where the item should start
+	auto									// next available space according to source order and auto-flow, unless overriden by 'order'
+	line-name|area-name
+	line-name|area-name? integer			// 'integer' can be negative, in that case it will start counting lines in reverse order
+	span line-name|area-name|integer		// you can define how many spaces an element should span, instead of manually calculating the ending line
+grid-row-end								// selects the grid line where the item should end. If not specified, the grid item will take up one tracking space
+grid-column-start							// same but for columns
+grid-column-end
+
+SHORTHANDS:
+grid-row: <grid-row-start> / <grid-row-end>
+grid-column: <grid-column-start> / <grid-column-end>
+grid-area: <grid-row-start> / <grid-column-start> / <grid-row-end> / <grid-column-end>;
+
+OTHER RELEVANT PROPERTIES:
+z-index										// define layering on overlapping grid items
+position: absolute;							// grid items with absolute positioning behave the same as any other elements, except if they've been specifically placed in a grid area,
+											// in that case their absolute positioning becomes relative to that grid area
+display: contents;							// makes the element's children behave as if they were on the same level as the element itself
+order: integer;								// overrides the natural order of grid items (only visually, doesn't affect screen readers or tabbing order)
+
+
+NAMED LINES AND AREAS*
+------------------------------
+
+// if you add named lines that end with -start and -end, you can use the name as a grid area name
+grid-template-columns:
+	[main-start sidebar-start] 200px
+	[sidebar-end content-start] 1fr
+	[column3-start] 1fr
+	[content-end main-end];
+grid-area: main;
+
+// the reverse also applies (defining template areas will make the equivalent named lines ending with -start and -end available)
+
+// you can have multiple lines with the same name, in that case if you place a grid item using that name, it will use the first line it finds with that name
+// but you can add a number after the name to indicate which of the lines should be used
+grid-template-columns: repeat(6, [column1] 1fr [column2] 2fr);
+grid-column: column1;						// picks the first line named 'column1'
+grid-column: column1 3;						// picks the third line named 'column1'
+
+
+NESTED GRIDS AND SUBGRIDS*
+------------------------------
+
+// grid items can be defined as grids with their own independent set of rules
+// the specification for proper subgrids is not finished yet
+
+
+IE 10, IE 11 and IE Mobile*
+------------------------------
+
+CONTAINER PROPERTIES:
+grid-template-rows				as -ms-grid-rows
+grid-template-columns			as -ms-grid-columns
+grid-template-areas				as -ms-grid-template
+grid-auto-rows					as -ms-grid-row-sizing
+grid-auto-columns				as -ms-grid-column-sizing
+grid-auto-flow					as -ms-grid-flow
+
+ITEM PROPERTIES:
+grid-row						as -ms-grid-row
+grid-row (span)					as -ms-grid-row-span
+grid-column						as -ms-grid-column
+grid-column (span)				as -ms-grid-column-span
+grid-area (area-name)			as -ms-grid-cell
+justify-self					as -ms-grid-row-align
+align-self						as -ms-grid-column-align
+z-index							as -ms-grid-layer
+								   -ms-grid-cell-stacking			// defines whether items placed inside the same cell should be stacked as columns|rows|layer (the new spec just adds layers)
+
+SYNTAX:
+[line-name-1 line-name-2]		as "line-name-1" "line-name-2"
+"area-name-1 area-name-2"		as "ab"								// only one letter per area, no spaces
+area-name (autogenerated)		as ::grid-cell("area-name") { grid-column: "area-name-start" "area-name-end"; grid-row: "area-name-start" "area-name-end"; }
+
+line-name						as "line-name"
+area-name						as "area-name"
+1 -1 (line numbers)				as start end						// automatically generated line names, used without quotes
+
+[content] repeat(3, 50px 10px)	as ("content" 50px 10px)[3]			// the line name is added only once, unlike in the new specification where it gets added multiple times
+
+
+*/

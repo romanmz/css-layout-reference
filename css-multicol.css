@@ -1,0 +1,48 @@
+/*
+
+==================================================
+CSS MULTI-COLUMN LAYOUT
+==================================================
+https://www.w3.org/TR/css-multicol-1/
+https://www.w3.org/TR/2017/WD-css-multicol-1-20171005/
+
+
+DEFINING COLUMNS*
+------------------------------
+column-count
+	auto			// default value, create as many columns as possible given the column-width property
+	<integer>		// if column-width has a set length, then this number indicates the maximum number of columns allowed, otherwise it becomes a fixed number of columns
+column-width
+	auto			// default value, allows columns to have any width
+	<length>		// minimum width for each of the generated columns
+columns
+	<column-count>? <column-width>?
+
+
+SPACING*
+------------------------------
+column-gap			// defines the gutter size between columns
+	normal			// default value, 1em
+	<length>
+	percentage
+column-fill			// defines how columns should be filled with content
+	balance			// default value, tries to make all columns have the same height
+	balance-all		// in 'paged media', 'balance' only balances the last column, this value balances all columns equally
+	auto			// allows initial columns to be completely filled before adding content to the following ones (the container needs to have a set height otherwise it'll end up with just one big column)
+
+
+APPEARANCE*
+------------------------------
+// same values as 'border' properties
+column-rule-style
+column-rule-width
+column-rule-color
+column-rule
+	<column-rule-width> <column-rule-style> <column-rule-color>
+
+
+CHILD ELEMENTS*
+------------------------------
+column-span			// defines whether an element should be kept inside its columns or if it can be extended to fill multiple columns
+	none			// default, keeps item within the column
+	all				// fill up the whole width of the container (causing a new set of columns to begin after it)

@@ -1,0 +1,126 @@
+/*
+
+==================================================
+CSS BOX ALIGNMENT
+==================================================
+https://www.w3.org/TR/css-align-3/
+https://www.w3.org/TR/2017/WD-css-align-3-20170906/
+
+
+TERMINOLOGY*
+------------------------------
+'align-*' properties		use the cross axis
+'justify-*' properties		use the main axis
+'place-*' properties		are shorthand properties to define settings for both axis
+'*-content' properties		align the content as a whole within the main container (similar to adding padding to the container)
+'*-items' properties		align individual items relative to the track they belong to, and according to the specified axis (similar to adding margins to the items)
+'*-self' properties			are the same as '*-items' but apply to individual items, overrides the '*-items' value set on the container on the selected item
+
+
+ALIGNMENT PROPERTIES AND VALUES*
+------------------------------
+<shared>
+	normal									// default value, equivalent to 'stretch' except when it applies to items with an intrinsic aspect ratio, in which case behaves as 'start'
+	stretch
+	center
+	start | flex-start
+	end | flex-end
+	left									// on 'justify-*' properties always aligns to the left (ignoring language direction),  on 'align-*' properties this falls back to 'start'
+	right									// on 'justify-*' properties always aligns to the right (ignoring language direction), on 'align-*' properties this falls back to 'start'
+align-content
+justify-content
+	<shared>
+	space-between							// equal space between items, no trailing spaces
+	space-around							// equal space between items, with half-sized trailing spaces
+	space-evenly							// equal space between items, with full-sized trailing spaces
+	safe *									// makes the content fallback to 'start' if it starts overflowing to the top or left (where you can't scroll to see the overflown content)
+	unsafe *								// specifically instructs the container to keep the content aligned even if it overflows somewhere you can't scroll
+align-items
+	<shared>
+	baseline								// equivalent to 'first baseline'
+	first baseline							// aligns the baselines of the first lines of text of each item. on 'justify-items' and 'justify-self' this fallsback to 'start'
+	last baseline							// aligns the baselines of the last lines of text of each item.  on 'justify-items' and 'justify-self' this fallsback to 'end'
+	self-start								// aligns items according to their own language direction/writing modes, instead of using the container's
+	self-end								// aligns items according to their own language direction/writing modes, instead of using the container's
+justify-items
+	<align-items>
+	legacy *								// makes child containers inherit the selected value for their own 'justify-items' property
+align-self
+justify-self
+	<align-items>
+	auto									// default value, inherits from the relevant '*-items' property on the container if set, otherwise defaults to 'normal'
+
+SHORTHANDS:
+place-content
+	<align-content> <justify-content>?
+place-items
+	<align-items> <justify-items>?
+place-self
+	<align-self> <justify-self>?
+
+NOTES:
+- not on flexbox: 'justify-items'
+- not on flexbox: 'justify-self'
+- ignored from spec: the three 'baseline' properties for 'align-content', either it's an error on the spec or browsers don't support it yet
+- ignored from spec: the 'safe' and 'unsafe' properties for all '*-items' and '*-self' properties, either it's an error on the spec or browsers don't support it yet
+- bug?: 'safe' and 'unsafe' values don't seem to work on flexbox
+- bug?: 'self-start' and 'self-end' values both seem to behave as 'start' on flexbox
+
+
+LIST OF VALUES GROUPED AS PER THE SPEC*
+------------------------------
+<>
+	normal
+	left
+	right
+	legacy left|right|center
+	auto
+<content-position>
+	center
+	start | flex-start
+	end | flex-end
+<content-distribution>
+	stretch
+	space-between
+	space-around
+	space-evenly
+<overflow-position>
+	safe <content-position>|left|right
+	unsafe <content-position>|left|right
+<baseline-position>
+	baseline
+	first baseline
+	last baseline
+<self-position>
+	self-start
+	self-end
+
+
+USING AUTO MARGINS ON ITEMS*
+------------------------------
+// you can use margins with 'auto' values to align items to any side of the grid
+// this is similar to using 'place-self' with <content-position> values, except that margins set this way ignore language direction settings
+margin-top: auto;
+margin-right: auto;
+margin-bottom: auto;
+margin-left: auto;
+
+
+ADDING GAPS BETWEEN ROWS AND COLUMNS*
+------------------------------
+row-gap
+	normal									// on multi-column containers: standard spacing defined by UA, on flex and grid: 0
+	<length>
+	percentage
+column-gap
+	<row-gap>
+gap
+	<row-gap> <column-gap>?
+
+NOTES:
+- multi-column:	only supports 'column-gap'
+- flexbox:		doesn't support any
+- grid:			supports all properties, but they need to be prefixed with 'grid-'
+
+
+*/

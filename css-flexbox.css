@@ -1,0 +1,77 @@
+/*
+
+==================================================
+CSS FLEXBOX
+==================================================
+https://www.w3.org/TR/css-flexbox-1/
+https://www.w3.org/TR/2017/CR-css-flexbox-1-20171019/
+
+
+TERMINOLOGY*
+------------------------------
+main axis
+	main start
+	main end
+cross axis
+	cross start
+	cross end
+flex container
+flex line
+	flex item
+		main size
+		cross size
+
+
+FLEX CONTAINERS*
+------------------------------
+display: flex;
+display: inline-flex;
+
+
+FLEX CONTAINER: DEFINING FLOW DIRECTION*
+------------------------------
+flex-direction					// sets the direction of the container's main axis
+	row							// horizontal main axis from left to right. default value
+	row-reverse					// horizontal main axis from right to left
+	column						// vertical main axis from top to bottom
+	column-reverse				// vertical main axis from bottom to top
+flex-wrap
+	nowrap						// keeps all items on a single row/column
+	wrap						// allow items to create multiple rows/columns if they don't fit on a single one. Default cross axis
+	wrap-reverse				// same but reverses the default cross axis
+flex-flow
+	<flex-direction> <flex-wrap>
+
+
+FLEX ITEM: SETTING SIZES*
+------------------------------
+flex-grow						// defines the factor at which the available space (if any) should be absorbed by the item
+	<positive integer>			// defaults to 0 (doesn't absorb any extra space)
+flex-shrink						// defines the factor at which the item will shrink whenever there's limited space on the main axis
+	<positive integer>			// defaults to 1 (shrinks the item in the same proportion as other items that also have a value of 1)
+flex-basis						// defines the base size of the grid item (which then is increased or decreased based on the grow and shrink factors)
+	auto						// default value, uses the item's computed size (takes into account width, height, etc)
+	content						// set size to fit content
+	<length-perc>
+	fill						// take up all space???
+	max-content					// max size to fit all content???
+	min-content					// min size to only fit the longer item/word in content???
+	fit-content					// ???
+flex
+	auto						// equivalent to '1 1 auto'   fully flexible
+	initial						// equivalent to '0 1 auto'   shrinks but doesn't grow. default value
+	none						// equivalent to '0 0 auto'   fully inflexible
+	<integer>					// equivalent to 'int 1 0'    makes element fluid, ignores intrinsic size
+	<length-perc>				// equivalent to '1 1 length'
+	<integer> <integer>			// equivalent to 'int int 0'
+	<integer> <lengt-perc>		// equivalent to 'int 1 length'
+	<flex-grow> <flex-shrink> <flex-basis>
+
+
+FLEX ITEM: OVERRIDING POSITION*
+------------------------------
+order							// overrides the natural position of the item
+	integer
+
+
+*/

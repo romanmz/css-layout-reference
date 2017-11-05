@@ -44,11 +44,12 @@ UNITS AND KEYWORDS*
 	<intrinsic-size>
 	minmax()
 <intrinsic-size>
-	max-content								// biggest space that the content can take
-	min-content								// smallest space that the content can take (without breaking up any words)
-	fit-content(<length>|percentage)		// equivalent to minmax(min-content, max-content)???
-	auto									// equivalent to fit-content???
-	stretch-fit								// ???
+	auto									// equivalent to fit-content?
+	stretch
+	max-content								// if specified for the inline axis, takes up the biggest space that the content can fill, fallsback to 'auto' on block axis
+	min-content								// if specified for the inline axis, takes up the smallest space that the content can have without breaking up any words, fallsback to 'auto' on block axis
+	fit-content								// if specified for the inline axis, equivalent to minmax(min-content, max-content), fallsback to 'auto' on block axis
+	fit-content(<length>|percentage)		// same as 'fit-content' but uses the passed length as a starting point
 <repetitions>
 	integer
 	auto-fill								// adds as many rows or columns as necessary to hold the content without having the container overflow

@@ -7,7 +7,7 @@ https://www.w3.org/TR/css3-grid-layout/
 https://www.w3.org/TR/2017/CR-css-grid-1-20170509/
 
 
-TERMINOLOGY*
+TERMINOLOGY
 ------------------------------
 
 GRID:
@@ -35,7 +35,7 @@ writing-mode:
 	sideways-lr								// vertical text, rotated 90 degrees anticlockwise, bottom to top, left to right
 
 
-UNITS AND KEYWORDS*
+UNITS AND KEYWORDS
 ------------------------------
 <track-size>
 	<length>
@@ -63,13 +63,13 @@ minmax(<track-size-minus-fr>, <track-size>)	// defines a minimum and maximum siz
 repeat(<repetitions>, line-names? <track-size-minus-minmax>... line-names?)	// defines multiple tracks with set lengths, multiple values are used as alternating sizes (multiplied by 'repetitions')
 
 
-GRID CONTAINERS*
+GRID CONTAINERS
 ------------------------------
 display: grid;
 display: inline-grid;
 
 
-DEFINING ROWS AND COLUMNS*
+DEFINING ROWS AND COLUMNS
 ------------------------------
 grid-template-columns						// defines the number and size of grid columns to be created
 	none
@@ -82,7 +82,7 @@ grid-template-areas							// defines and names grid areas on the container, you 
 	".			footer		footer";		// you can use a dot '.' to mark grid cells that should remain empty
 
 
-DEFINING AUTO-FLOW RULES*
+DEFINING AUTO-FLOW RULES
 ------------------------------
 grid-auto-rows								// defines the rules for automatically generated rows (when grid items are added outside the defined grid)
 	<track-size>...							// you can pass multiple values to define alternating sizes
@@ -93,7 +93,7 @@ grid-auto-flow:								// defines whether auto-placed items should be spread acr
 	column dense?
 
 
-SHORTHANDS*
+SHORTHANDS
 ------------------------------
 grid-template
 	none
@@ -119,7 +119,7 @@ grid: 50px 100px / auto-flow dense 5rem;
 grid: auto-flow / 200px 1fr;
 
 
-PLACING GRID ITEMS*
+PLACING GRID ITEMS
 ------------------------------
 grid-row-start								// selects the grid line where the item should start
 	auto									// next available space according to source order and auto-flow, unless overriden by 'order'
@@ -143,7 +143,7 @@ display: contents;							// makes the element's children behave as if they were 
 order: integer;								// overrides the natural order of grid items (only visually, doesn't affect screen readers or tabbing order)
 
 
-NAMED LINES AND AREAS*
+NAMED LINES AND AREAS
 ------------------------------
 
 // if you add named lines that end with -start and -end, you can use the name as a grid area name
@@ -163,14 +163,14 @@ grid-column: column1;						// picks the first line named 'column1'
 grid-column: column1 3;						// picks the third line named 'column1'
 
 
-NESTED GRIDS AND SUBGRIDS*
+NESTED GRIDS AND SUBGRIDS
 ------------------------------
 
 // grid items can be defined as grids with their own independent set of rules
 // the specification for proper subgrids is not finished yet
 
 
-IE 10, IE 11 and IE Mobile*
+IE 10, IE 11 and IE Mobile
 ------------------------------
 
 CONTAINER PROPERTIES:

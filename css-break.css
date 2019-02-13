@@ -6,7 +6,7 @@ CSS FRAGMENTATION
 https://www.w3.org/TR/css-break-3/
 https://www.w3.org/TR/2017/CR-css-break-3-20170209/
 
-this still has very browser support, so not documenting anything yet :/
+this still has very limited browser support, so not documenting anything yet :/
 
 break-before
 break-after
@@ -14,3 +14,5 @@ break-inside
 orphans
 widows
 box-decoration-break
+
+*/

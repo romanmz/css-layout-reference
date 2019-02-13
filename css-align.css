@@ -7,7 +7,7 @@ https://www.w3.org/TR/css-align-3/
 https://www.w3.org/TR/2017/WD-css-align-3-20170906/
 
 
-TERMINOLOGY*
+TERMINOLOGY
 ------------------------------
 'align-*' properties		use the cross axis
 'justify-*' properties		use the main axis
@@ -17,7 +17,7 @@ TERMINOLOGY*
 '*-self' properties			are the same as '*-items' but apply to individual items, overrides the '*-items' value set on the container on the selected item
 
 
-ALIGNMENT PROPERTIES AND VALUES*
+ALIGNMENT PROPERTIES AND VALUES
 ------------------------------
 <shared>
 	normal									// default value, equivalent to 'stretch' except when it applies to items with an intrinsic aspect ratio, in which case behaves as 'start'
@@ -67,7 +67,7 @@ NOTES:
 - bug?: 'self-start' and 'self-end' values both seem to behave as 'start' on flexbox
 
 
-LIST OF VALUES GROUPED AS PER THE SPEC*
+LIST OF VALUES GROUPED AS PER THE SPEC
 ------------------------------
 <>
 	normal
@@ -96,7 +96,7 @@ LIST OF VALUES GROUPED AS PER THE SPEC*
 	self-end
 
 
-USING AUTO MARGINS ON ITEMS*
+USING AUTO MARGINS ON ITEMS
 ------------------------------
 // you can use margins with 'auto' values to align items to any side of the grid
 // this is similar to using 'place-self' with <content-position> values, except that margins set this way ignore language direction settings
@@ -106,7 +106,7 @@ margin-bottom: auto;
 margin-left: auto;
 
 
-ADDING GAPS BETWEEN ROWS AND COLUMNS*
+ADDING GAPS BETWEEN ROWS AND COLUMNS
 ------------------------------
 row-gap
 	normal									// on multi-column containers: standard spacing defined by UA, on flex and grid: 0

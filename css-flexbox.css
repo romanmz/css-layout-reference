@@ -7,7 +7,7 @@ https://www.w3.org/TR/css-flexbox-1/
 https://www.w3.org/TR/2017/CR-css-flexbox-1-20171019/
 
 
-TERMINOLOGY*
+TERMINOLOGY
 ------------------------------
 main axis
 	main start
@@ -22,13 +22,13 @@ flex line
 		cross size
 
 
-FLEX CONTAINERS*
+FLEX CONTAINERS
 ------------------------------
 display: flex;
 display: inline-flex;
 
 
-FLEX CONTAINER: DEFINING FLOW DIRECTION*
+FLEX CONTAINER: DEFINING FLOW DIRECTION
 ------------------------------
 flex-direction					// sets the direction of the container's main axis
 	row							// horizontal main axis from left to right. default value
@@ -43,7 +43,7 @@ flex-flow
 	<flex-direction> <flex-wrap>
 
 
-FLEX ITEM: SETTING SIZES*
+FLEX ITEM: SETTING SIZES
 ------------------------------
 flex-grow						// defines the factor at which the available space (if any) should be absorbed by the item
 	<positive integer>			// defaults to 0 (doesn't absorb any extra space)
@@ -68,7 +68,7 @@ flex
 	<flex-grow> <flex-shrink> <flex-basis>
 
 
-FLEX ITEM: OVERRIDING POSITION*
+FLEX ITEM: OVERRIDING POSITION
 ------------------------------
 order							// overrides the natural position of the item
 	integer
